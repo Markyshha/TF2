@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Fortress 2 - История Легенды</title>
+    <style>
+        :root {
+            --red: #ff3b30;
+            --blu: #007aff;
+            --yellow: #ffcc00;
+            --bg-dark: #1a1a1a;
+            --bg-light: #2a2a2a;
+            --text: #f0f0f0;
+            --text-secondary: #b0b0b0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 59, 48, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 122, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-dark));
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--yellow);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.imgur.com/JJZJZJZ.png') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--red), var(--blu));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: titleGlow 3s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px var(--red); }
+            100% { text-shadow: 0 0 20px var(--blu); }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--yellow);
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            background: url('https://i.imgur.com/3JZJZJZ.png') center/contain no-repeat;
+            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.7));
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        nav {
+            background-color: var(--bg-light);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--yellow);
+        }
+        
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--yellow);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--red), var(--blu));
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--red), var(--blu));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--yellow);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -12px;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--bg-light);
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--yellow);
+            margin-bottom: 10px;
+        }
+        
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .class-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .class-card.red {
+            border-top: 5px solid var(--red);
+        }
+        
+        .class-card.blu {
+            border-top: 5px solid var(--blu);
+        }
+        
+        .class-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .class-info {
+            padding: 20px;
+        }
+        
+        .class-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--yellow);
+        }
+        
+        .class-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--yellow);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 15px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--yellow);
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 20px;
+            border-left: 5px solid var(--red);
+            border-right: 5px solid var(--blu);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-dark));
+            margin-top: 60px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cta h2 {
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, var(--red), var(--blu));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(90deg, var(--blu), var(--red));
+        }
+        
+        footer {
+            background-color: var(--bg-light);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Параллакс эффект */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 500px;
+            position: relative;
+            margin: 60px 0;
+        }
+        
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .parallax-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .parallax h2 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .parallax p {
+            color: white;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo"></div>
+            <h1>TEAM FORTRESS 2</h1>
+            <p class="subtitle">Легендарный шутер с 2007 года и по сей день</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#history">История</a></li>
+            <li><a href="#classes">Классы</a></li>
+            <li><a href="#gameplay">Геймплей</a></li>
+            <li><a href="#updates">Обновления</a></li>
+            <li><a href="#community">Сообщество</a></li>
+        </ul>
+    </nav>
+    
+    <section id="history" class="container">
+        <h2 class="fade-in">История создания</h2>
+        <p class="fade-in delay-1">Team Fortress 2 (TF2) — многопользовательский командный шутер от первого лица, разработанный и изданный Valve Corporation. Игра была выпущена 10 октября 2007 года как часть сборника The Orange Box для Windows и Xbox 360, а позже и для PlayStation 3.</p>
+        <p class="fade-in delay-2">TF2 является продолжением модификации Team Fortress для Quake (1996) и Team Fortress Classic (1999). Разработка игры заняла почти 9 лет, в течение которых концепция и визуальный стиль многократно менялись.</p>
+        
+        <div class="timeline fade-in delay-3">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-year">1996</div>
+                    <p>Вышла модификация Team Fortress для Quake, созданная Робином Уокером и Джоном Куком. Мод ввел концепцию классов с уникальными способностями.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-year">1999</div>
+                    <p>Valve нанимает создателей мода и выпускает Team Fortress Classic как бесплатное дополнение к Half-Life. Игра использует движок GoldSrc.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-year">1998-2007</div>
+                    <p>Долгий период разработки TF2. Игра несколько раз меняла концепцию — от реалистичного военного симулятора до мультяшного шутера в стиле ретро-пропаганды.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-year">2007</div>
+                    <p>Официальный релиз Team Fortress 2 в составе The Orange Box. Игра получает восторженные отзывы за уникальный стиль, юмор и сбалансированный геймплей.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-year">2011</div>
+                    <p>TF2 становится бесплатной. Valve вводит систему микротранзакций и "Манн-Ко магазин". Игра получает постоянный приток новых игроков.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="parallax" style="background-image: url('https://i.imgur.com/4X4X4X4.jpg');">
+        <div class="parallax-content">
+            <h2>"Некоторые люди думают, что могут перехитрить меня. Может, и могут..."</h2>
+            <p>— Шпион, Team Fortress 2</p>
+        </div>
+    </div>
+    
+    <section id="classes" class="container">
+        <h2 class="fade-in">9 уникальных классов</h2>
+        <p class="fade-in delay-1">Каждый из 9 классов TF2 имеет уникальные характеристики, оружие и роль в команде. Баланс между классами — одна из причин долголетия игры.</p>
+        
+        <div class="classes-grid">
+            <div class="class-card red fade-in">
+                <div class="class-image" style="background-image: url('https://i.imgur.com/5X5X5X5.jpg');"></div>
+                <div class="class-info">
+                    <h3 class="class-name">Разведчик</h3>
+                    <p class="class-role">Быстрый ближний боец</p>
+                    <p>Самый быстрый класс, вооруженный дробовиком и бейсбольной битой. Идеален для захвата точек и флага.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-value">125</div>
+                            <div class="stat-label">Здоровье</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">133%</div>
+                            <div class="stat-label">Скорость</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Низкая</div>
+                            <div class="stat-label">Защита</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="class-card blu fade-in delay-1">
+                <div class="class-image" style="background-image: url('https://i.imgur.com/6X6X6X6.jpg');"></div>
+                <div class="class-info">
+                    <h3 class="class-name">Солдат</h3>
+                    <p class="class-role">Универсальный боец</p>
+                    <p>Вооружен ракетницей, позволяющей прыгать по карте (рокет-джамп). Основная сила атаки любой команды.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-value">200</div>
+                            <div class="stat-label">Здоровье</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">80%</div>
+                            <div class="stat-label">Скорость</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Средняя</div>
+                            <div class="stat-label">Защита</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="class-card red fade-in delay-2">
+                <div class="class-image" style="background-image: url('https://i.imgur.com/7X7X7X7.jpg');"></div>
+                <div class="class-info">
+                    <h3 class="class-name">Поджигатель</h3>
+                    <p class="class-role">Контроль территории</p>
+                    <p>Использует огнемет для создания стен огня и подавления противника. Эффективен в закрытых пространствах.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-value">175</div>
+                            <div class="stat-label">Здоровье</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Скорость</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Средняя</div>
+                            <div class="stat-label">Защита</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Остальные классы можно добавить аналогично -->
+        </div>
+    </section>
+    
+    <section id="gameplay" class="container">
+        <h2 class="fade-in">Уникальный геймплей</h2>
+        <p class="fade-in delay-1">TF2 предлагает разнообразные режимы игры, каждый из которых требует особой стратегии и взаимодействия между классами.</p>
+        
+        <div class="gallery">
+            <div class="gallery-item fade-in">
+                <img src="https://i.imgur.com/8X8X8X8.jpg" alt="Capture the Flag" class="gallery-image">
+                <div class="gallery-caption">Захват флага (CTF)</div>
+            </div>
+            <div class="gallery-item fade-in delay-1">
+                <img src="https://i.imgur.com/9X9X9X9.jpg" alt="Control Points" class="gallery-image">
+                <div class="gallery-caption">Контроль точек (CP)</div>
+            </div>
+            <div class="gallery-item fade-in delay-2">
+                <img src="https://i.imgur.com/0X0X0X0.jpg" alt="Payload" class="gallery-image">
+                <div class="gallery-caption">Перевозка груза (Payload)</div>
+            </div>
+        </div>
+        
+        <div class="quote fade-in delay-3">
+            "TF2 — это не просто шутер, это социальный эксперимент, обернутый в мультяшное насилие и наполненный таким количеством харизмы, что даже смерть здесь весела."
+        </div>
+    </section>
+    
+    <section id="updates" class="container">
+        <h2 class="fade-in">Значимые обновления</h2>
+        <p class="fade-in delay-1">За годы существования TF2 получил множество крупных обновлений, добавлявших новый контент и механику.</p>
+        
+        <div class="timeline fade-in delay-2">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-year">2008 - Gold Rush</div>
+                    <p>Первое крупное обновление, добавившее режим "Payload" и карту Gold Rush.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-year">2009 - Sniper vs. Spy</div>
+                    <p>Обновление, посвященное Снайперу и Шпиону, с новым оружием и анимациями.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-year">2010 - Mann-Conomy</div>
+                    <p>Введена система предметов, крафтинга и первых платных вещей.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-year">2011 - F2P</div>
+                    <p>Игра становится бесплатной, добавлен магазин Mann-Co.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-year">2012 - Mann vs. Machine</div>
+                    <p>Кооперативный режим против ботов, система Tour of Duty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="parallax" style="background-image: url('https://i.imgur.com/1X1X1X1.jpg');">
+        <div class="parallax-content">
+            <h2>"Ты не просто играешь в TF2 — ты становишься частью его безумного мира"</h2>
+            <p>— Гейб Ньюэлл (шутка)</p>
+        </div>
+    </div>
+    
+    <section id="community" class="container">
+        <h2 class="fade-in">Живое сообщество</h2>
+        <p class="fade-in delay-1">Даже спустя более 15 лет после релиза, TF2 сохраняет активное сообщество игроков, создателей контента и моддеров.</p>
+        
+        <div class="gallery">
+            <div class="gallery-item fade-in">
+                <img src="https://i.imgur.com/2X2X2X2.jpg" alt="TF2 Competitive" class="gallery-image">
+                <div class="gallery-caption">Соревновательные лиги</div>
+            </div>
+            <div class="gallery-item fade-in delay-1">
+                <img src="https://i.imgur.com/3X3X3X3.jpg" alt="TF2 Cosplay" class="gallery-image">
+                <div class="gallery-caption">Косплей-сообщество</div>
+            </div>
+            <div class="gallery-item fade-in delay-2">
+                <img src="https://i.imgur.com/4X4X4X4.jpg" alt="TF2 Fan Art" class="gallery-image">
+                <div class="gallery-caption">Фанарт и творчество</div>
+            </div>
+        </div>
+        
+        <p class="fade-in delay-3">Сообщество создает кастомные карты, моды, скины и даже целые игры по мотивам TF2 (как Open Fortress). Ежегодные события вроде "Smissmas" и "Scream Fortress" собирают тысячи игроков.</p>
+    </section>
+    
+    <div class="cta fade-in">
+        <div class="container">
+            <h2>Готов вступить в бой?</h2>
+            <p>Team Fortress 2 остается одним из самых популярных шутеров спустя более чем 15 лет после релиза. Присоединяйся к миллионам игроков по всему миру!</p>
+            <a href="https://store.steampowered.com/app/440/Team_Fortress_2/" class="btn" target="_blank">Играть бесплатно</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://www.teamfortress.com/" target="_blank">Официальный сайт</a>
+                <a href="https://wiki.teamfortress.com/" target="_blank">Вики</a>
+                <a href="https://steamcommunity.com/app/440" target="_blank">Сообщество Steam</a>
+                <a href="https://www.reddit.com/r/tf2/" target="_blank">Reddit</a>
+            </div>
+            <p class="copyright">© 2023 Team Fortress 2 Fan Site. Неофициальный ресурс. Все права на игру принадлежат Valve Corporation.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Простая анимация при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', fadeInOnScroll);
+            fadeInOnScroll(); // Инициализация при загрузке
+        });
+    </script>
+</body>
+</html>
